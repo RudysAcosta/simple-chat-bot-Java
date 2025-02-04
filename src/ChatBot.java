@@ -1,48 +1,58 @@
 import java.util.Scanner;
 
-class SimpleBot {
-    final static Scanner scanner = new Scanner(System.in); // Do not change this line
+class ChatBot {
+    private static final Scanner scanner = new Scanner(System.in);
+    private final String name;
+    private final String birthYear;
 
-    public static void main(String[] args) {
-        greet("Aid", "2018"); // change it as you need
-        remindName();
-        guessAge();
-        count();
-        test();
-        end();
+    public ChatBot(String name, String birthYear) {
+        this.name = name;
+        this.birthYear = birthYear;
+
     }
 
-    static void greet(String assistantName, String birthYear) {
-        System.out.println("Hello! My name is " + assistantName + ".");
+    public void start() {
+        introduceBot();
+        askUserName();
+        calculateUserAge();
+        countToNumber();
+        runKnowledgeTest();
+        sayGoodbye();
+    }
+
+    private void introduceBot() {
+        System.out.println("Hello! My name is " + name + ".");
         System.out.println("I was created in " + birthYear + ".");
         System.out.println("Please, remind me your name.");
     }
 
-    static void remindName() {
-        String name = scanner.nextLine();
-        System.out.println("What a great name you have, " + name + "!");
+    private void askUserName() {
+        String userName = scanner.nextLine();
+        System.out.println("What a great name you have, " + userName + "!");
     }
 
-    static void guessAge() {
+    private void calculateUserAge() {
         System.out.println("Let me guess your age.");
-        System.out.println("Enter remainders of dividing your age by 3, 5 and 7.");
+        System.out.println("Enter remainders of dividing your age by 3, 5, and 7.");
+
         int rem3 = scanner.nextInt();
         int rem5 = scanner.nextInt();
         int rem7 = scanner.nextInt();
+
         int age = (rem3 * 70 + rem5 * 21 + rem7 * 15) % 105;
         System.out.println("Your age is " + age + "; that's a good time to start programming!");
     }
 
-    static void count() {
+    private void countToNumber() {
         System.out.println("Now I will prove to you that I can count to any number you want.");
         int num = scanner.nextInt();
+
         for (int i = 0; i <= num; i++) {
             System.out.printf("%d!\n", i);
         }
     }
 
-
-    static void test() {
+    private void runKnowledgeTest() {
         System.out.println("Let's test your programming knowledge.");
         System.out.println("Why do we use methods?");
         System.out.println("1. To repeat a statement multiple times.");
@@ -50,20 +60,13 @@ class SimpleBot {
         System.out.println("3. To determine the execution time of a program.");
         System.out.println("4. To interrupt the execution of a program.");
 
-        int answer;
-
-        while(true) {
-            answer = scanner.nextInt();
-            if(answer != 2) {
-                System.out.println("Please, try again.");
-                continue;
-            }
-
-            break;
+        while (scanner.nextInt() != 2) {
+            System.out.println("Please, try again.");
         }
     }
 
-    static void end() {
-        System.out.println("Congratulations, have a nice day!"); // Do not change this text
+    private void sayGoodbye() {
+        System.out.println("Congratulations, have a nice day!");
     }
+
 }
